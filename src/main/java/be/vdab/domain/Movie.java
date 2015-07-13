@@ -1,52 +1,43 @@
-package be.vdab.movies;
+package be.vdab.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.awt.*;
 import java.net.URL;
-import java.util.HashMap;
+import java.util.*;
 
 @Entity
 public class Movie {
 
     @Id @GeneratedValue private int id;
     private String title;
-    private HashMap<Actor, String> cast;
+    private HashMap<Actor, String> cast = new HashMap<>();
     private int length;
     private String director;
     private String summary;
-    private Image image;
-    private Genre genre;
-    private int userRating;
-    private URL trailer;
-    private float averageRating;
+    @Lob private Image image;
+    @OneToMany private Set<Genre> genres = new TreeSet<>();
+    @Transient private float userRating;
+    @Lob private URL trailer;
 
-    public Movie(int id, String title, HashMap<Actor, String> cast, int length, String director,
-                 String summary, Image image, Genre genre, int userRating, URL trailer, float averageRating) {
-        this.id = id;
+    public Movie(String title, HashMap<Actor, String> cast, int length, String director,
+                 String summary, Image image, TreeSet<Genre> genres, float userRating, URL trailer) {
         this.title = title;
         this.cast = cast;
         this.length = length;
         this.director = director;
         this.summary = summary;
         this.image = image;
-        this.genre = genre;
+        this.genres = genres;
         this.userRating = userRating;
         this.trailer = trailer;
-        this.averageRating = averageRating;
+    }
+
+    public void addActor(Actor actor, String character) {
+        this.cast.put(actor, character);
     }
 
     // only used for JPA
     protected Movie() {}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;
@@ -96,19 +87,23 @@ public class Movie {
         this.image = image;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public void addGenre(Genre genre) {
+        this.genres.add(genre);
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void removeGenre(Genre genre) {
+        this.genres.remove(genre);
     }
 
-    public int getUserRating() {
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public float getUserRating() {
         return userRating;
     }
 
-    public void setUserRating(int userRating) {
+    public void setUserRating(float userRating) {
         this.userRating = userRating;
     }
 
@@ -120,11 +115,4 @@ public class Movie {
         this.trailer = trailer;
     }
 
-    public float getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(float averageRating) {
-        this.averageRating = averageRating;
-    }
 }

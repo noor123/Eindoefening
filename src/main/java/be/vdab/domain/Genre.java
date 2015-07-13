@@ -1,7 +1,12 @@
-package be.vdab.movies;
+package be.vdab.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Genre {
-    private String name;
+    @Id private String name;
 
     public Genre(String name) {
         this.name = name;

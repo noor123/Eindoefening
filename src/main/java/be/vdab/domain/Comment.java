@@ -1,14 +1,22 @@
-package be.vdab.movies;
+package be.vdab.domain;
 
+import javax.persistence.*;
+import java.util.Date;
+
+@Entity
 public class Comment {
-    Movie movie;
-    User user;
-    String description;
 
-    public Comment(Movie movie, User user, String description) {
+    @Id @GeneratedValue private int id;
+    @ManyToOne Movie movie;
+    @ManyToOne User user;
+    String description;
+    @Temporal(TemporalType.TIMESTAMP) Date date;
+
+    public Comment(Movie movie, User user, String description, Date date) {
         this.movie = movie;
         this.user = user;
         this.description = description;
+        this.date = date;
     }
     // only used for JPA
     protected Comment() {}
@@ -35,5 +43,13 @@ public class Comment {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

@@ -1,16 +1,20 @@
-package be.vdab.movies;
+package be.vdab.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.util.TreeSet;
 
+@Entity
 public class User {
-    String username;
-    String password;
-    TreeSet<Movie> savedMovies;
 
-    public User(String username, String password, TreeSet<Movie> savedMovies) {
+    @Id String username;
+    String password;
+    @OneToMany TreeSet<Movie> savedMovies = new TreeSet<>();
+
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.savedMovies = savedMovies;
     }
 
     // only used for JPA
@@ -32,12 +36,15 @@ public class User {
         this.password = password;
     }
 
+    public void addMovie(Movie movie) {
+        this.savedMovies.add(movie);
+    }
+
+    public void removeMovie(Movie movie) {
+        this.savedMovies.remove(movie);
+    }
+
     public TreeSet<Movie> getSavedMovies() {
         return savedMovies;
     }
-
-    public void setSavedMovies(TreeSet<Movie> savedMovies) {
-        this.savedMovies = savedMovies;
-    }
-
 }

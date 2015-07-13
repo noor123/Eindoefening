@@ -1,14 +1,16 @@
-package be.vdab.movies;
+package be.vdab.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.awt.*;
 import java.util.Date;
 
 @Entity
 public class Actor {
+
+    @Id @GeneratedValue private int id;
     private String biography;
-    private Date birthdate;
-    private Gender gender;
+    @Temporal(TemporalType.TIMESTAMP) private Date birthdate;
+    @Enumerated private Gender gender;
     private Image profileImage;
 
     public Actor(String biography, Date birthdate, Gender gender, Image profileImage) {

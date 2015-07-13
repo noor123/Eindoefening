@@ -1,8 +1,12 @@
 package be.vdab.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.util.Set;
 import java.util.TreeSet;
 
 @Entity
@@ -10,7 +14,7 @@ public class User {
 
     @Id String username;
     String password;
-    @OneToMany TreeSet<Movie> savedMovies = new TreeSet<>();
+    @OneToMany Set<Movie> savedMovies = new TreeSet<>();
 
     public User(String username, String password) {
         this.username = username;
@@ -44,7 +48,7 @@ public class User {
         this.savedMovies.remove(movie);
     }
 
-    public TreeSet<Movie> getSavedMovies() {
+    public Set<Movie> getSavedMovies() {
         return savedMovies;
     }
 }

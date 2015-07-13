@@ -1,5 +1,9 @@
 package be.vdab.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.*;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.awt.*;
 import java.net.URL;
@@ -14,13 +18,13 @@ public class Movie {
     private int length;
     private String director;
     private String summary;
-    @Lob private Image image;
+    @Lob private byte[] image;
     @OneToMany private Set<Genre> genres = new TreeSet<>();
     @Transient private float userRating;
     @Lob private URL trailer;
 
     public Movie(String title, HashMap<Actor, String> cast, int length, String director,
-                 String summary, Image image, TreeSet<Genre> genres, float userRating, URL trailer) {
+                 String summary, byte[] image, TreeSet<Genre> genres, float userRating, URL trailer) {
         this.title = title;
         this.cast = cast;
         this.length = length;
@@ -79,11 +83,11 @@ public class Movie {
         this.summary = summary;
     }
 
-    public Image getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 

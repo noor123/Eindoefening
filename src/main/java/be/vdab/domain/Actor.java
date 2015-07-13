@@ -1,5 +1,7 @@
 package be.vdab.domain;
 
+import org.springframework.stereotype.*;
+
 import javax.persistence.*;
 import java.awt.*;
 import java.util.Date;
@@ -11,9 +13,9 @@ public class Actor {
     private String biography;
     @Temporal(TemporalType.TIMESTAMP) private Date birthdate;
     @Enumerated private Gender gender;
-    private Image profileImage;
+    @Lob private byte[] profileImage;
 
-    public Actor(String biography, Date birthdate, Gender gender, Image profileImage) {
+    public Actor(String biography, Date birthdate, Gender gender, byte[] profileImage) {
         this.biography = biography;
         this.birthdate = birthdate;
         this.gender = gender;
@@ -47,11 +49,11 @@ public class Actor {
         this.gender = gender;
     }
 
-    public Image getProfileImage() {
+    public byte[] getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(Image profileImage) {
+    public void setProfileImage(byte[] profileImage) {
         this.profileImage = profileImage;
     }
 

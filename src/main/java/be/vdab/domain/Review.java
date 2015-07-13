@@ -1,5 +1,8 @@
 package be.vdab.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import javax.persistence.OneToMany;
 import java.util.Date;
 import java.util.TreeSet;

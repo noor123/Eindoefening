@@ -5,7 +5,7 @@ import java.io.*;
 public class FileToHexStringConverter {
     public static void main(String[] args) throws IOException {
         // TODO: parameterize filename to args[]
-        try(FileInputStream fis = new FileInputStream(new File("images/david-tennant.jpg"))) {
+        try(FileInputStream fis = new FileInputStream(new File("src/main/resources/META-INF/image.jpg"))) {
             System.out.print("0x");
             toHexString(fis, System.out);
         }

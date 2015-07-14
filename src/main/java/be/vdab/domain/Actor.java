@@ -11,6 +11,9 @@ public class Actor {
 
     @Id @GeneratedValue private int id;
     private String biography;
+
+    private String name;
+
     @Temporal(TemporalType.TIMESTAMP) private Date birthdate;
     @Enumerated private Gender gender;
     @Lob private byte[] profileImage;

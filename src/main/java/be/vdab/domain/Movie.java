@@ -14,7 +14,12 @@ public class Movie {
 
     @Id @GeneratedValue private int id;
     private String title;
-    private HashMap<Actor, String> cast = new HashMap<>();
+
+    @ManyToMany
+    @JoinTable(joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
+    @MapKeyColumn(name = "character_name")
+    private Map<String, Actor> cast = new HashMap<>();
+
     private int length;
     private String director;
     private String summary;
@@ -23,7 +28,7 @@ public class Movie {
     @Transient private float userRating;
     @Lob private URL trailer;
 
-    public Movie(String title, HashMap<Actor, String> cast, int length, String director,
+    public Movie(String title, Map<String, Actor> cast, int length, String director,
                  String summary, byte[] image, TreeSet<Genre> genres, float userRating, URL trailer) {
         this.title = title;
         this.cast = cast;
@@ -37,7 +42,7 @@ public class Movie {
     }
 
     public void addActor(Actor actor, String character) {
-        this.cast.put(actor, character);
+        this.cast.put(character, actor);
     }
 
     // only used for JPA
@@ -51,11 +56,11 @@ public class Movie {
         this.title = title;
     }
 
-    public HashMap<Actor, String> getCast() {
+    public Map<String, Actor> getCast() {
         return cast;
     }
 
-    public void setCast(HashMap<Actor, String> cast) {
+    public void setCast(HashMap<String, Actor> cast) {
         this.cast = cast;
     }
 

@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 public class UserComment {
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private Integer id;
     @ManyToOne User user;
     @Temporal(TemporalType.TIMESTAMP) Date date;
     @Lob String description;
@@ -21,6 +21,10 @@ public class UserComment {
 
     // only used for JPA
     protected UserComment() {}
+
+    public Integer getId() {
+        return id;
+    }
 
     public User getUser() {
         return user;

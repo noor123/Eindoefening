@@ -1,7 +1,8 @@
-package ca.evelyne.utilities;
+package be.vdab.utilities;
 
 
 import org.junit.Test;
+import be.vdab.utilities.FileToHexStringConverter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

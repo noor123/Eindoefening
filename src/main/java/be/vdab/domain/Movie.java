@@ -12,7 +12,7 @@ import java.util.*;
 @Entity
 public class Movie {
 
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private Integer id;
     private String title;
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
@@ -25,7 +25,7 @@ public class Movie {
     @Lob private byte[] image;
     @ManyToMany private Set<Genre> genres = new TreeSet<>();
     @Transient private float userRating;
-    @Lob private URL trailer;
+    private URL trailer;
 
     public Movie(String title, Map<String, Actor> cast, int length, String director,
                  String summary, byte[] image, TreeSet<Genre> genres, float userRating, URL trailer) {
@@ -40,12 +40,12 @@ public class Movie {
         this.trailer = trailer;
     }
 
-    public void addActor(Actor actor, String character) {
-        this.cast.put(character, actor);
-    }
-
     // only used for JPA
     protected Movie() {}
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getTitle() {
         return title;
@@ -59,8 +59,8 @@ public class Movie {
         return cast;
     }
 
-    public void setCast(HashMap<String, Actor> cast) {
-        this.cast = cast;
+    public void addActor(Actor actor, String character) {
+        this.cast.put(character, actor);
     }
 
     public int getLength() {

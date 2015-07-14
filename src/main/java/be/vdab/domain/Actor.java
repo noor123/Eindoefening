@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class Actor {
 
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private Integer id;
     private String firstName;
     private String lastName;
     @Lob private String biography;
@@ -28,6 +28,10 @@ public class Actor {
 
     // only used for JPA
     protected Actor() {}
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;

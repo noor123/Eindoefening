@@ -9,7 +9,7 @@ import java.util.Date;
 @Entity
 public class Comment {
 
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private Integer id;
     @ManyToOne Movie movie;
     @ManyToOne User user;
     String description;
@@ -23,6 +23,10 @@ public class Comment {
     }
     // only used for JPA
     protected Comment() {}
+
+    public Integer getId() {
+        return id;
+    }
 
     public Movie getMovie() {
         return movie;

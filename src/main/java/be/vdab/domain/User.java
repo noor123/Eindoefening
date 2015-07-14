@@ -3,20 +3,17 @@ package be.vdab.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 import java.util.TreeSet;
 
 @Entity
 public class User {
 
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private Integer id;
     String username;
     String password;
-    @OneToMany Set<Movie> savedMovies = new TreeSet<>();
+    @ManyToMany Set<Movie> savedMovies = new TreeSet<>();
 
     public User(String username, String password) {
         this.username = username;
@@ -25,6 +22,10 @@ public class User {
 
     // only used for JPA
     protected User() {}
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getUsername() {
         return username;

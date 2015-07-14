@@ -9,7 +9,7 @@ import javax.persistence.OneToOne;
 
 @Entity
 public class Genre {
-    @Id @GeneratedValue private int id;
+    @Id @GeneratedValue private Integer id;
     private String name;
 
     public Genre(String name) {
@@ -18,6 +18,10 @@ public class Genre {
 
     // only used for JPA
     protected Genre() {}
+
+    public Integer getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

@@ -10,15 +10,16 @@ import java.util.Date;
 public class Actor {
 
     @Id @GeneratedValue private int id;
-    private String biography;
-
-    private String name;
-
+    private String firstName;
+    private String lastName;
+    @Lob private String biography;
     @Temporal(TemporalType.TIMESTAMP) private Date birthdate;
-    @Enumerated private Gender gender;
+    @Enumerated(EnumType.STRING) private Gender gender;
     @Lob private byte[] profileImage;
 
-    public Actor(String biography, Date birthdate, Gender gender, byte[] profileImage) {
+    public Actor(String firstName, String lastName, String biography, Date birthdate, Gender gender, byte[] profileImage) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.biography = biography;
         this.birthdate = birthdate;
         this.gender = gender;
@@ -27,6 +28,22 @@ public class Actor {
 
     // only used for JPA
     protected Actor() {}
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     public String getBiography() {
         return biography;

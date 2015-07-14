@@ -14,7 +14,6 @@ public class Movie {
 
     @Id @GeneratedValue private int id;
     private String title;
-
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
     @MapKeyColumn(name = "character_name")
@@ -22,9 +21,9 @@ public class Movie {
 
     private int length;
     private String director;
-    private String summary;
+    @Lob private String summary;
     @Lob private byte[] image;
-    @OneToMany private Set<Genre> genres = new TreeSet<>();
+    @ManyToMany private Set<Genre> genres = new TreeSet<>();
     @Transient private float userRating;
     @Lob private URL trailer;
 

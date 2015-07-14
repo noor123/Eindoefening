@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.util.Set;
@@ -12,7 +13,8 @@ import java.util.TreeSet;
 @Entity
 public class User {
 
-    @Id String username;
+    @Id @GeneratedValue private int id;
+    String username;
     String password;
     @OneToMany Set<Movie> savedMovies = new TreeSet<>();
 

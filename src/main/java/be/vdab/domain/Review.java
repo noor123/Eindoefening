@@ -3,13 +3,16 @@ package be.vdab.domain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import java.util.Date;
+import java.util.Set;
 import java.util.TreeSet;
 
+@Entity
 public class Review extends Comment {
     private int rating;
-    @OneToMany private TreeSet<UserComment> userComments = new TreeSet<>();
+    @OneToMany private Set<UserComment> userComments = new TreeSet<>();
 
     public Review(Movie movie, User user, String description, Date date, int rating) {
         super(movie, user, description, date);
@@ -31,7 +34,7 @@ public class Review extends Comment {
         this.userComments.add(uc);
     }
 
-    public TreeSet<UserComment> getUserComments() {
+    public Set<UserComment> getUserComments() {
         return userComments;
     }
 }

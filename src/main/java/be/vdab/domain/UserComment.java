@@ -11,7 +11,7 @@ public class UserComment {
     @Id @GeneratedValue private int id;
     @ManyToOne User user;
     @Temporal(TemporalType.TIMESTAMP) Date date;
-    String description;
+    @Lob String description;
 
     public UserComment(User user, Date date, String description) {
         this.user = user;

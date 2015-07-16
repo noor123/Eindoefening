@@ -12,6 +12,10 @@ body {
     opacity: 0.5;
 }
 
-.extra_space {
+.extra_space1 {
     margin-bottom: 40px;
+}
+
+.extra_space2 {
+    margin-left: 15px;
 }

@@ -13,7 +13,7 @@
 <body>
   <div class="container">
       <h1 class="text-center">${movie.title}</h1>
-      <p class="extra_space" class="text-center">${movie.summary}</p>
+      <p class="extra_space1" class="text-center">${movie.summary}</p>
       <p><b>Length: </b>${movie.length} minutes</p>
       <p><b>Director: </b>${movie.director}</p>
       <p><b>Average rating: </b>${movie.calculateRating()}%</p>
@@ -24,13 +24,13 @@
       </p>
       <p><b>Actors: </b>
           <c:forEach var="mapEntry" items="${movie.cast}">
-            <p>${mapEntry.value.firstName} ${mapEntry.value.lastName} (${mapEntry.key})</p>
+            <p class="extra_space2">* ${mapEntry.value.firstName} ${mapEntry.value.lastName} (${mapEntry.key})</p>
           </c:forEach>
       </p>
       <p><b>Comments: </b>
           <c:forEach var="comment" items="${movie.comments}">
-      <p>
-        ${comment.user.username} says: "${comment.description}"
+      <p class="extra_space2">
+        * ${comment.user.username} says: "${comment.description}"
       </p>
       </c:forEach>
       </p>

@@ -1,0 +1,13 @@
+body {
+    background-image: url("../images/achtergrondFilm.png");
+    background-size: 500px;
+    background-repeat: no-repeat;
+    background-position: 50px 50px;
+    transform: rotate(360deg);
+    transition-duration: 3s;
+}
+
+table#tableMovies {
+    margin: 0 auto;
+    float: none;
+}

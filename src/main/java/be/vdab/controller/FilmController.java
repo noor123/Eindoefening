@@ -15,16 +15,40 @@ public class FilmController {
     @Autowired
     MovieRepository movieRepository;
 
-    @RequestMapping("/index")
+    @RequestMapping("/index.html")
     public String Home() {
         return "home";
     }
 
     @RequestMapping("/movies")
-    public String films(Map<String, Object> model) {
+    public String movies(Map<String, Object> model) {
         model.put("movies", movieRepository.findAll());
         return "movie/list";
     }
+
+    @RequestMapping("/detail")
+    public String movie(Map<String, Object> model, @RequestParam("id") Integer movieId) {
+        model.put("movie", movieRepository.findOne((movieId)));
+        return "movie/detail";
+    }
+
+    @RequestMapping("/rating")
+    public String movieRating(Map<String, Object> model, @RequestParam("id") Integer movieId) {
+        model.put("movie", movieRepository.findOne((movieId)));
+        model.put("movies", movieRepository.findAll());
+        return "movie/ratingForm";
+    }
+
+    @RequestMapping("/")
+    public String redirect() {
+        return "redirect:/movies";
+    }
+
+    @RequestMapping("rating_done")
+    public String thankYou() {
+        return "movie/ratingDone";
+    }
+
 
 
 
@@ -32,12 +56,6 @@ public class FilmController {
 //    @RequestMapping("/actor")
 //    public String actor() {
 //        return "movie/list";
-//    }
-
-//    @RequestMapping("/film")
-//    public String film(Map<String, Object> model, @RequestParam("id") int filmId) {
-//        model.put("film", filmRepository.findOne(filmId));
-//        return "film/detail";
 //    }
 //
 //    @RequestMapping("/form")

@@ -1,0 +1,17 @@
+body {
+    background-image: url("../images/HungerGames.jpg");
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.container {
+    background-color: white;
+    opacity: 0.5;
+}
+
+.extra_space {
+    margin-bottom: 40px;
+}

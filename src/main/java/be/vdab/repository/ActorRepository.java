@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 
 @Repository
-public interface ActorRepository extends JpaRepository<Actor, Long> {
+public interface ActorRepository extends JpaRepository<Actor, Integer> {
 
 }

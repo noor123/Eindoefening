@@ -18,16 +18,18 @@ insert into movie_cast (movie_id, actor_id, character_name) values
 
 insert into user (username, password) values ('noor', '12345'), ('gert', 'wachtwoord'), ('bart', 'aabbcc');
 
-insert into comment (dtype, movie_id, user_id, description, rating) values
-  ('comment', 1, 1, 'Great movie, I like it.', null),
-  ('review', 3, 1, 'This is a good movie.', 7),
-  ('comment', 1, 2, 'Fine to watch.', null),
-  ('review', 2, 2, 'The actors are the best', 8),
-  ('comment', 2, 3, 'Amazing!', null),
-  ('review', 1, 3, 'You should see it.', 7),
-  ('comment', 3, 1, 'Nothing to say.', null),
-  ('review', 3, 1, 'If you see it, you will know it''s good.', 9),
-  ('review', 2, 2, 'It''s... fantasy!', 5),
-  ('review', 3, 3, 'Good story.', 10);
+insert into comment (dtype, user_id, description, rating) values
+  ('comment', 1, 'Great movie, I like it.', null),
+  ('review', 1, 'This is a good movie.', 7),
+  ('comment', 2, 'Fine to watch.', null),
+  ('review', 2, 'The actors are the best', 8),
+  ('comment', 3, 'Amazing!', null),
+  ('review', 3, 'You should see it.', 7),
+  ('comment', 1, 'Nothing to say.', null),
+  ('review', 1, 'If you see it, you will know it''s good.', 9),
+  ('review', 2, 'It''s... fantasy!', 5),
+  ('review', 3, 'Good story.', 10);
+
+insert into movie_comments (movie_id, comments_id) values (1,1), (3,2), (1,3), (2,4), (2,5), (1,6), (3,7), (3,8), (2,9), (3,10);
 
 insert into user_saved_movies (user_id, saved_movies_id) values (1,2), (1,3), (2,1), (2,3), (3,1), (3,2), (3,3);

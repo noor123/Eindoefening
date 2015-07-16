@@ -7,16 +7,15 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@DiscriminatorValue("comment")
 public class Comment {
 
     @Id @GeneratedValue private Integer id;
-    @ManyToOne Movie movie;
     @ManyToOne User user;
     String description;
     @Temporal(TemporalType.TIMESTAMP) Date date;
 
-    public Comment(Movie movie, User user, String description, Date date) {
-        this.movie = movie;
+    public Comment(User user, String description, Date date) {
         this.user = user;
         this.description = description;
         this.date = date;
@@ -26,14 +25,6 @@ public class Comment {
 
     public Integer getId() {
         return id;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
     }
 
     public User getUser() {

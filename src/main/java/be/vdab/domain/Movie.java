@@ -18,21 +18,22 @@ public class Movie {
     @JoinTable(joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "actor_id"))
     @MapKeyColumn(name = "character_name")
     private Map<String, Actor> cast = new HashMap<>();
-
     private int length;
     private String director;
+    @OneToMany Set<Comment> comments = new TreeSet<>();
     @Lob private String summary;
     @Lob private byte[] image;
     @ManyToMany private Set<Genre> genres = new TreeSet<>();
-    @Transient private float userRating;
+    @Transient private int userRating;
     private URL trailer;
 
-    public Movie(String title, Map<String, Actor> cast, int length, String director,
-                 String summary, byte[] image, TreeSet<Genre> genres, float userRating, URL trailer) {
+    public Movie(String title, Map<String, Actor> cast, int length, String director, Set<Comment> comments,
+                 String summary, byte[] image, TreeSet<Genre> genres, int userRating, URL trailer) {
         this.title = title;
         this.cast = cast;
         this.length = length;
         this.director = director;
+        this.comments = comments;
         this.summary = summary;
         this.image = image;
         this.genres = genres;
@@ -59,7 +60,7 @@ public class Movie {
         return cast;
     }
 
-    public void addActor(Actor actor, String character) {
+    public void addActor(String character, Actor actor) {
         this.cast.put(character, actor);
     }
 
@@ -77,6 +78,18 @@ public class Movie {
 
     public void setDirector(String director) {
         this.director = director;
+    }
+
+    public void addComment(Comment comment) {
+        this.comments.add(comment);
+    }
+
+    public void removeComment(Comment comment) {
+        this.comments.remove(comment);
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
     }
 
     public String getSummary() {
@@ -107,12 +120,8 @@ public class Movie {
         return genres;
     }
 
-    public float getUserRating() {
+    public int getUserRating() {
         return userRating;
-    }
-
-    public void setUserRating(float userRating) {
-        this.userRating = userRating;
     }
 
     public URL getTrailer() {
@@ -121,6 +130,23 @@ public class Movie {
 
     public void setTrailer(URL trailer) {
         this.trailer = trailer;
+    }
+
+    public float calculateRating() {
+        int amountOfRatings = 0;
+        int sumOfRatings = 0;
+        if (comments.size() == 0) {
+            return 5;
+        } else for (Comment comment : comments) {
+            if (comment instanceof Review) {
+                amountOfRatings++;
+                Review r = (Review)comment;
+                sumOfRatings += r.getRating();
+            }
+        }
+       float averageRating = sumOfRatings / (float)amountOfRatings;
+       userRating = (int)Math.round(averageRating*100)/10;
+       return userRating;
     }
 
 }

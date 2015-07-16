@@ -7,20 +7,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/movie.css"/>
 </head>
 <body>
-  <h1 class="text-center">Table with films</h1>
-  <table border="1" class="table-striped">
+  <h1 class="text-center">Overview movies</h1>
+  <p class="text-center">
+      These are the movies in our database. You can rate them if you want.
+  </p>
+  <table id=tableMovies border="1">
       <tr>
-      <th>id</th>
-      <th>title</th>
-    </tr>
-    <c:forEach var="movie" items="${movies}">
-      <tr>
-        <td><a href="/movie?id=${movie.id}">${movie.id}</a></td>
-        <td><a href="/movie?id=${movie.id}">${movie.title}</a></td>
-      </tr
-    </c:forEach>
+          <th>Title</th>
+          <th>Average rating</th>
+      </tr>
+      <c:forEach var="movie" items="${movies}">
+          <tr>
+              <td>${movie.title}</td>
+              <td>${movie.calculateRating()}% </td>
+              <td>
+                  <a class="btn btn-primary" href="/detail?id=${movie.id}">Detailpage</a>
+                  <a class="btn btn-primary" href="/rating?id=${movie.id}">Rate it yourself</a>
+              </td>
+          </tr
+      </c:forEach>
   </table>
 </body>
 </html>

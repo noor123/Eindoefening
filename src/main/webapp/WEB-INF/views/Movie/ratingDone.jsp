@@ -9,15 +9,9 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Create film</h1>
-        <sf:form commandName="film" action="/create">
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <sf:input path="title" class="form-control"/>
-            </div>
-            <sf:hidden path="id"/>
-            <button type="submit" class="btn btn-success">Submit</button>
-        </sf:form>
+        <h1 class="text-center">Thank you for rating</h1>
+        <p class="text-center">You're making this site better by giving your opinion.</p>
+        <a class="btn btn-success center-block" class="text-center" href="/movies">Back to the homepage</a>
     </div>
 
 

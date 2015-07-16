@@ -18,14 +18,14 @@
                 username:<br><input type="text" name="username" class="form-control" required><br>
                 password:<br><input type="password" name="password" class="form-control" required><br>
                 Title: <br>
-                    <select name="movie_title">
+                    <select name="movie_title" class="form-control">
                         <c:forEach var="m" items="${movies}">
                             <option>${m.title}</option>
                         </c:forEach>
                     </select>
                 <br>
                 <%--<br><sf:input path="title" class="form-control"/><br>--%>
-                Rating: <br><input type="number" min="0" max="10" value="5"><br>
+                Rating: <br><input type="number" min="0" max="10" value="5" class="form-control"><br>
                 Comment:<br><textarea type="text" name="description" min="0" max="250" class="form-control" required>What is your opinion about this movie?</textarea><br>
             </div>
             <button type="submit" class="btn btn-success">Submit</button>

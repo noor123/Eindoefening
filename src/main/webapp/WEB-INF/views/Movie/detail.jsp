@@ -17,7 +17,7 @@
       <p><b>Length: </b>${movie.length} minutes</p>
       <p><b>Director: </b>${movie.director}</p>
       <p><b>Average rating: </b>${movie.calculateRating()}%</p>
-      <p><b>Genres: </b>
+      <p class="extra_space1"><b>Genres: </b>
         <c:forEach var="genre" items="${movie.genres}" varStatus="status">
             ${genre.name}<c:if test="${!status.last}">, </c:if>
         </c:forEach>
@@ -26,6 +26,8 @@
           <c:forEach var="mapEntry" items="${movie.cast}">
             <p class="extra_space2">* ${mapEntry.value.firstName} ${mapEntry.value.lastName} (${mapEntry.key})</p>
           </c:forEach>
+      </p>
+      <p class="extra_space1">
       </p>
       <p><b>Comments: </b>
           <c:forEach var="comment" items="${movie.comments}">
